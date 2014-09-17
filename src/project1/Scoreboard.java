@@ -16,13 +16,8 @@ public class Scoreboard {
 	private static void printScoreboard(SinglyLinkedList<GameEntry> current) {
 		SinglyLinkedList<GameEntry> localScore = current;
 		while (localScore.isEmpty() == false) {
-			if (localScore.isEmpty() == false) {
-				System.out.println("SCORE = " + localScore.first().getName() + " " + localScore.first().getScore());
-				localScore.removeFirst();
-			}
-			else {
-				System.out.println("Uhh... done?");
-			}
+			System.out.println("SCORE = " + localScore.first().getName() + " " + localScore.first().getScore());
+			localScore.removeFirst();
 		}
 	}
 }
