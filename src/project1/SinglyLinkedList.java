@@ -1,79 +1,61 @@
 package project1;
- 
-class SLinkedList
-{
-   private int data;
-   private SLinkedList next;
- 
-   public SLinkedList()
-   {
-      data = 0;
-      next = null;
-   }
- 
-   public SLinkedList(int value)
-   {
-      data = value;
-      next = null;
-   }
- 
- 
-   public SLinkedList InsertNext(int value)
-   {
-      SLinkedList node = new SLinkedList(value);
-      if(this.next == null)
-      {
-         // Easy to handle
-         node.next = null; // already set in constructor
-         this.next = node;
-      }
-      else
-      {
-         // Insert in the middle
-         SLinkedList temp = this.next;
-         node.next = temp;
-         this.next = node;
-       }
-       return node;
-   }
- 
-   public int DeleteNext()
-   {
-      if(next == null)
-         return 0;
- 
-       SLinkedList node = this.next;
-       this.next = this.next.next;  // can be NULL here
-       node = null;
-       return 1;
-   }
- 
-   public void Traverse(SLinkedList node)
-   {
-      if(node == null)
-         node = this;
-      System.out.println("\n\nTraversing in Forward Direction\n\n");
- 
-      while(node != null)
-      {
-         System.out.println(node.data);
-         node = node.next;
-      }
-   }
- 
-  
- 
-   public static void main(String[] args)
-   {
-      SLinkedList node1 = new SLinkedList(1);
-      SLinkedList node2 = node1.InsertNext(2);
-      SLinkedList node3 = node2.InsertNext(3);
-      SLinkedList node4 = node3.InsertNext(4);
-      SLinkedList node5 = node4.InsertNext(5);
- 
-      node1.Traverse(null);
-      node3.DeleteNext(); // delete the node "4"
-      node2.Traverse(null);
-     
-   }
+
+class SinglyLinkedList <E> {
+	
+	private static class Node<E> {
+		private E element;
+		private Node<E> next;
+		public Node(E e, Node<E> n) {
+			element = e;
+			next = n;
+		}
+		public E getElement() { return element; }
+		public Node<E> getNext() { return next; }
+		public void setNext(Node<E> n) { next = n; }
+	}
+
+	private Node<E> head = null;
+	private Node<E> tail = null;
+	private int size = 0;
+	
+	public SinglyLinkedList() {};
+	public int size() { return size; }
+	public boolean isEmpty() { return size == 0; }
+
+	public E first() {
+		if (isEmpty()) return null;
+		return head.getElement();
+	}
+	
+	public E last() {
+		if (isEmpty()) return null;
+		return tail.getElement();
+	}
+	
+	public void addFirst (E e) {
+		head = new Node<E>(e, head);
+		if (size == 0)
+			tail = head;
+		size++;
+	}
+	
+	public void addLast(E e) {
+		Node<E> newest = new Node<E>(e, null);
+		if (isEmpty())
+			head = newest;
+		else
+			tail.setNext(newest);
+		tail = newest;
+		size++;
+	}
+	
+	public E removeFirst() {
+		if (isEmpty()) return null;
+		E answer = head.getElement();
+		head = head.getNext();
+		size--;
+		if (size == 0)
+			tail = null;
+		return answer;
+	}
 }

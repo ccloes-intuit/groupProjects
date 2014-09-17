@@ -5,6 +5,10 @@ public class GameEntry {
 	private String name;
 	private int score;
 	
+	public GameEntry () {
+		name = "AAA";
+		score = 100;
+	}
 	public GameEntry(String n, int s) {
 		name = n;
 		score = s;
