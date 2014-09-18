@@ -1,7 +1,5 @@
-import java.lang.*;
-import java.util.*;
-import java.io.*;
- 
+package project1.orig;
+
 class SLinkedList
 {
    private int data;
