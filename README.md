@@ -1,7 +1,4 @@
+#Everyone
 
-	1) Declare and create a singlylinkedlist of GameEntry Objects.
-	2) Modify 'add' & 'remove' to use the singlylinkedlist
-	3) Consider modifying SinglyLinkedList to do things like:
-		a. removeLast
-		b. addBetween
-		c. etc
+## I created a directory for each of you.  Please put your code in your respective project/directory
+## I also created an "orig" directory with the code we found the first day in case you want to use it still as a reference
