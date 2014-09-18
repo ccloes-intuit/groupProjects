@@ -1,4 +1,4 @@
-package project1;
+package project1.chad;
 
 class SinglyLinkedList <E> {
 	
@@ -22,6 +22,10 @@ class SinglyLinkedList <E> {
 	public int size() { return size; }
 	public boolean isEmpty() { return size == 0; }
 
+	public int getSize () {
+		return size;
+	}
+
 	public E first() {
 		if (isEmpty()) return null;
 		return head.getElement();
@@ -30,6 +34,11 @@ class SinglyLinkedList <E> {
 	public E last() {
 		if (isEmpty()) return null;
 		return tail.getElement();
+	}
+	
+	public E next() {
+		if (isEmpty()) return null;
+		return head.element;
 	}
 	
 	public void addFirst (E e) {
@@ -57,5 +66,9 @@ class SinglyLinkedList <E> {
 		if (size == 0)
 			tail = null;
 		return answer;
+	}
+	
+	public void removeLast() {
+		
 	}
 }

@@ -1,4 +1,4 @@
-package project1;
+package project1.chad;
 
 public class ScoreboardTest {
 
@@ -7,6 +7,7 @@ public class ScoreboardTest {
 	public static void main(String[] args) {
 		SinglyLinkedList<GameEntry> myScoreboard = new SinglyLinkedList<GameEntry>();
 		Scoreboard scores = new Scoreboard();
+		Sort obj = new Sort();
 		
 		scores.initializeScoreboard(numberOfGames);
 		System.out.println("Number of Games: " + scores.getNumberOfGames());
@@ -17,13 +18,21 @@ public class ScoreboardTest {
 		scores.addGame(new GameEntry());
 		scores.addGame(new GameEntry());
 
-		scores.setGames(Sort.insertionSort(scores.getGames(), scores.getNumberOfEntries()));
+		scores.setGames(obj.insertionSort(scores.getGames(), scores.getNumberOfEntries()));
 		
 		for (int cnt = 0; cnt < scores.getNumberOfEntries(); cnt++) {
 			myScoreboard.addFirst(scores.getGame(cnt));
 		}
-			
+		
+//		myScoreboard.removeLast();
+		
 		scores.printScoreboard(myScoreboard);
+		
+		myScoreboard.removeLast();
+		
+		System.out.println("Hope this works!");
+		scores.printScoreboard(myScoreboard);
+		
 
 	}
 

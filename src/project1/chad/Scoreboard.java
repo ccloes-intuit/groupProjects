@@ -1,4 +1,4 @@
-package project1;
+package project1.chad;
 
 public class Scoreboard {
 
@@ -42,9 +42,12 @@ public class Scoreboard {
 	}
 	
 	public void printScoreboard(SinglyLinkedList<GameEntry> current) {
-		while (current.isEmpty() == false) {
-			System.out.println("SCORE = " + current.first().getName() + " " + current.first().getScore());
-			current.removeFirst();
+		int iterator = current.size();
+		GameEntry temp = current.first();
+		SinglyLinkedList<GameEntry> tempList = current;
+		while (iterator == 0) {
+			System.out.println("SCORE = " + temp.getName() + " " + temp.getScore());
+			temp = tempList.next();
 		}
 	}
 }

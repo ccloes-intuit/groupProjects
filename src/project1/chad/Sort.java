@@ -1,8 +1,8 @@
-package project1;
+package project1.chad;
 
 public class Sort {
 	
-	public static GameEntry[] insertionSort (GameEntry[] localList, int numberOfEntries) {
+	public GameEntry[] insertionSort (GameEntry[] localList, int numberOfEntries) {
 		for (int counter = 1; counter < numberOfEntries; counter++) {
 			GameEntry currentGame = localList[counter];
 			int currentArrayLocation = counter;
