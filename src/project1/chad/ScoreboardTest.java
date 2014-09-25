@@ -21,6 +21,7 @@ public class ScoreboardTest {
 		scores.setGames(obj.insertionSort(scores.getGames(), scores.getNumberOfEntries()));
 		
 		for (int cnt = 0; cnt < scores.getNumberOfEntries(); cnt++) {
+			System.out.println("current = " + scores.getGame(cnt));
 			myScoreboard.addFirst(scores.getGame(cnt));
 		}
 		
@@ -28,7 +29,7 @@ public class ScoreboardTest {
 		
 		scores.printScoreboard(myScoreboard);
 		
-		myScoreboard.removeLast();
+		myScoreboard = myScoreboard.removeLast();
 		
 		System.out.println("Hope this works!");
 		scores.printScoreboard(myScoreboard);

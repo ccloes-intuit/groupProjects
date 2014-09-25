@@ -1,6 +1,6 @@
 package project1.chad;
 
-class SinglyLinkedList <E> {
+class SinglyLinkedList <E> implements Cloneable {
 	
 	private static class Node<E> {
 		private E element;
@@ -68,7 +68,27 @@ class SinglyLinkedList <E> {
 		return answer;
 	}
 	
-	public void removeLast() {
+	@SuppressWarnings("unchecked")
+	public SinglyLinkedList<GameEntry> clone() throws CloneNotSupportedException {
+	    return (SinglyLinkedList<GameEntry>) super.clone();
+	}
+	
+	public SinglyLinkedList<GameEntry> removeLast() {
+		SinglyLinkedList<GameEntry> temp = null;
+		SinglyLinkedList<GameEntry> newList = new SinglyLinkedList<GameEntry>();
+		try {
+			temp = this.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		do {
+			System.out.println("This is the current value = " + temp.first().getName());
+			newList.addLast(temp.head.getElement());
+			temp.removeFirst();
+		} while (temp.head.next != null);
+		
+		return newList;
 	}
 }

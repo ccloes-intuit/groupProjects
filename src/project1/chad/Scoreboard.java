@@ -43,11 +43,17 @@ public class Scoreboard {
 	
 	public void printScoreboard(SinglyLinkedList<GameEntry> current) {
 		int iterator = current.size();
-		GameEntry temp = current.first();
-		SinglyLinkedList<GameEntry> tempList = current;
-		while (iterator == 0) {
-			System.out.println("SCORE = " + temp.getName() + " " + temp.getScore());
-			temp = tempList.next();
+		SinglyLinkedList<GameEntry> temp = null;
+		try {
+			temp = current.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		while (iterator != 0) {
+			System.out.println("SCORE = " + temp.first().getName() + " " + temp.first().getScore());
+			temp.removeFirst();
+			iterator--;
 		}
 	}
 }
