@@ -7,7 +7,7 @@ public class GameEntry {
 	
 	public GameEntry () {
 		name = "AAA";
-		score = 100;
+		score = 0;
 	}
 	public GameEntry(String n, int s) {
 		name = n;

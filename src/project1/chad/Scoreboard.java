@@ -2,56 +2,64 @@ package project1.chad;
 
 public class Scoreboard {
 
-	private static GameEntry[] games;
-	private static int numberOfGames = 5;
+	private static SinglyLinkedList<GameEntry> games;
 	private static int totalGames = 0;
+	private static GameEntry highScore = null;
+	private static GameEntry lowScore = null;
+
+	public GameEntry getHighScore()
+	{
+		return highScore;
+	}
+
+	public GameEntry getLowScore()
+	{
+		return lowScore;
+	}
 
 	public Scoreboard () {
-		games = new GameEntry[numberOfGames];
+		games = new SinglyLinkedList<GameEntry>();
+		highScore = new GameEntry();
+		lowScore = new GameEntry();
 	}
 	
-	public void initializeScoreboard (int newNumberOfGames) {
-		games = new GameEntry[newNumberOfGames];
-		numberOfGames = newNumberOfGames;
-		totalGames = 0;
-	}
-	
-	public int getNumberOfGames() {
-		return numberOfGames;
-	}
-
-	public GameEntry getGame(int i) {
-		return games[i];
+	public int getTotalGames() {
+		return totalGames;
 	}
 
 	public void addGame (GameEntry game) {
-		games[totalGames] = game;
+		if ( game.getScore() > highScore.getScore() )
+		{
+			games.addFirst(game);
+			highScore = game;
+		}
+		else if ( game.getScore() < lowScore.getScore() )
+		{
+			games.addLast(game);
+			lowScore = game;
+		}
+		else 
+		{
+			games = games.addBetween(game);
+		}
 		totalGames++;
 	}
 	
-	public int getNumberOfEntries() {
-		return totalGames;
+	public void removeLast()
+	{
+		games = games.removeLast();
 	}
 	
-	public GameEntry[] getGames() {
-		return games;
-	}
-	
-	public void setGames(GameEntry[] sortedGames) {
-		games = sortedGames;
-	}
-	
-	public void printScoreboard(SinglyLinkedList<GameEntry> current) {
-		int iterator = current.size();
+	public void printScoreboard() {
+		int iterator = games.size();
 		SinglyLinkedList<GameEntry> temp = null;
 		try {
-			temp = current.clone();
+			temp = games.clone();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		while (iterator != 0) {
-			System.out.println("SCORE = " + temp.first().getName() + " " + temp.first().getScore());
+			System.out.print(temp.first().toString());
 			temp.removeFirst();
 			iterator--;
 		}

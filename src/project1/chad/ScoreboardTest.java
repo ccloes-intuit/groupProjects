@@ -1,40 +1,41 @@
 package project1.chad;
 
 public class ScoreboardTest {
-
-	static int numberOfGames = 8;
 	
 	public static void main(String[] args) {
-		SinglyLinkedList<GameEntry> myScoreboard = new SinglyLinkedList<GameEntry>();
 		Scoreboard scores = new Scoreboard();
-		Sort obj = new Sort();
 		
-		scores.initializeScoreboard(numberOfGames);
-		System.out.println("Number of Games: " + scores.getNumberOfGames());
+		System.out.println("Number of Games: " + scores.getTotalGames());
+		System.out.println("Adding some games...");
 		scores.addGame(new GameEntry("Chad", 999999999));
 		scores.addGame(new GameEntry("Frank", 100000));
+		scores.addGame(new GameEntry());
 		scores.addGame(new GameEntry("Alice", 1000));
 		scores.addGame(new GameEntry("Zelda", 900000));
 		scores.addGame(new GameEntry());
-		scores.addGame(new GameEntry());
 
-		scores.setGames(obj.insertionSort(scores.getGames(), scores.getNumberOfEntries()));
-		
-		for (int cnt = 0; cnt < scores.getNumberOfEntries(); cnt++) {
-			System.out.println("current = " + scores.getGame(cnt));
-			myScoreboard.addFirst(scores.getGame(cnt));
-		}
-		
-//		myScoreboard.removeLast();
-		
-		scores.printScoreboard(myScoreboard);
-		
-		myScoreboard = myScoreboard.removeLast();
-		
-		System.out.println("Hope this works!");
-		scores.printScoreboard(myScoreboard);
-		
+		System.out.println("Number of Games: " + scores.getTotalGames());
+		System.out.println("Showing the scoreboard:");
+		scores.printScoreboard();
+		System.out.println("\n");
 
+		System.out.println("Removing the last game entry:");
+		scores.removeLast();
+		System.out.println("Number of Games: " + scores.getTotalGames());
+		System.out.println("Showing the scoreboard:");
+		scores.printScoreboard();
+		System.out.println("\n");
+		
+		System.out.println("Adding two additional scores in between: ");
+		scores.addGame(new GameEntry("MiddleMax", 800000));
+		scores.addGame(new GameEntry("MiddleAlice", 3000));
+		System.out.println("Number of Games: " + scores.getTotalGames());
+		System.out.println("Showing the scoreboard:");
+		scores.printScoreboard();
+		System.out.println("\n");
+		
+		System.out.println("HIGHSCORE = " + scores.getHighScore().getName() + " " + scores.getHighScore().getScore());
+		System.out.println("LOWSCORE = " + scores.getLowScore().getName() + " " + scores.getLowScore().getScore());
+		
 	}
-
 }

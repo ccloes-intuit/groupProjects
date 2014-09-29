@@ -73,22 +73,75 @@ class SinglyLinkedList <E> implements Cloneable {
 	    return (SinglyLinkedList<GameEntry>) super.clone();
 	}
 	
+	public SinglyLinkedList<GameEntry> addBetween(GameEntry game)
+	{
+		SinglyLinkedList<GameEntry> temp = null;
+		SinglyLinkedList<GameEntry> newList = new SinglyLinkedList<GameEntry>();
+		int iterator = 0;
+		
+		try {
+			temp = this.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		
+		iterator = temp.getSize();
+		// System.out.println("GAME = " + game.getName() + " SCORE = " + game.getScore() + " SIZE = " + size);
+		boolean add = true;
+		while (iterator != 0) 
+		{
+			if (temp.head.next == null && size == 1) 
+			{
+				// System.out.println("Adding " + temp.head.getElement().getName());
+				newList.addLast(temp.head.getElement());
+				// System.out.println("Adding " + game.getName());
+				newList.addLast(game);
+			}
+			else if (temp.head.next == null && size > 1)
+			{
+				// System.out.println("Adding " + temp.head.getElement().getName());
+				newList.addLast(temp.head.getElement());
+				if (add)
+				{
+					// System.out.println("Adding " + game.getName());
+					newList.addLast(game);	
+				}
+				
+			}
+			else if ((game.getScore() < temp.head.getElement().getScore()) && (game.getScore() > temp.head.next.getElement().getScore()))
+			{
+				// System.out.println("Adding " + temp.head.getElement().getName());
+				newList.addLast(temp.head.getElement());
+				// System.out.println("Adding " + game.getName());
+				newList.addLast(game);
+				add = false;
+			}
+			else
+			{
+				// System.out.println("Adding " + temp.head.getElement().getName());
+				newList.addLast(temp.head.getElement());
+			}
+			temp.removeFirst();
+			iterator--;
+		}
+		return newList;
+	}
 	public SinglyLinkedList<GameEntry> removeLast() {
 		SinglyLinkedList<GameEntry> temp = null;
 		SinglyLinkedList<GameEntry> newList = new SinglyLinkedList<GameEntry>();
 		try {
 			temp = this.clone();
 		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		do {
-			System.out.println("This is the current value = " + temp.first().getName());
+			// System.out.println("This is the current value = " + temp.first().getName());
 			newList.addLast(temp.head.getElement());
 			temp.removeFirst();
 		} while (temp.head.next != null);
 		
 		return newList;
 	}
+
 }
