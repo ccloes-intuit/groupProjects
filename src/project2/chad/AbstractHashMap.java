@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package net.datastructures;
+package project2.chad;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -115,7 +115,7 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
 
   /** Updates the size of the hash table and rehashes all entries. */
   private void resize(int newCap) {
-    ArrayList<Entry<K,V>> buffer = new ArrayList<>(n);
+    ArrayList<Entry<K,V>> buffer = new ArrayList<Entry<K, V>>(n);
     for (Entry<K,V> e : entrySet())
       buffer.add(e);
     capacity = newCap;

@@ -1,0 +1,7 @@
+SortedPriorityQueue <Auto, String> queue2 = new SortedPriorityQueue <Auto, String> (comp);
+
+Use the above
+
+used in the TreeMap
+
+:

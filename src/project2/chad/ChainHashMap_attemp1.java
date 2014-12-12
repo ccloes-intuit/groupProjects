@@ -34,6 +34,7 @@ import java.util.ArrayList;
 public class ChainHashMap<K,V> extends AbstractHashMap<K,V> {
   // a fixed capacity array of UnsortedTableMap that serve as buckets
   private UnsortedTableMap<K,V>[] table;   // initialized within createTable
+  private SinglyLinkedList<MapEntry> myList;
 
   // provide same constructors as base class
   /** Creates a hash table with capacity 11 and prime factor 109345121. */
@@ -61,9 +62,29 @@ public class ChainHashMap<K,V> extends AbstractHashMap<K,V> {
    */
   @Override
   protected V bucketGet(int h, K k) {
-    UnsortedTableMap<K,V> bucket = table[h];
-    if (bucket == null) return null;
-    return bucket.get(k);
+	MapEntry myEntry = new MapEntry(k,h);
+	SinglyLinkedList<MapEntry> tempList = null;
+	try
+	{
+		tempList = myList.clone();
+	} catch (CloneNotSupportedException e)
+	{
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	if (! tempList.isEmpty()){
+		for (int i=0; i < tempList.getSize(); i++) {
+			if (tempList.first().getKey() == k) {
+				myList.addFirst(myEntry);
+				return (V) myList.first().getKey();
+			}
+			else {
+				tempList.removeFirst();
+			}
+		}
+	}
+	return null;
   }
 
   /**
@@ -76,6 +97,35 @@ public class ChainHashMap<K,V> extends AbstractHashMap<K,V> {
    */
   @Override
   protected V bucketPut(int h, K k, V v) {
+	MapEntry myEntry = new MapEntry(k,h);
+	SinglyLinkedList<MapEntry> tempList = null;
+	try
+	{
+		tempList = myList.clone();
+	} catch (CloneNotSupportedException e)
+	{
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+	if (tempList.isEmpty()){
+		myList.addFirst(myEntry);
+		return (V) myList.first().getKey();
+	}
+	else {
+		for (int i=0; i < tempList.getSize(); i++) {
+			if (tempList.first().getKey() == k) {
+				myList.addFirst(myEntry);
+				return (V) myList.first().getKey();
+			}
+			else {
+				tempList.removeFirst();
+			}
+		}
+	}
+	
+	
+	
     UnsortedTableMap<K,V> bucket = table[h];
     if (bucket == null)
       bucket = table[h] = new UnsortedTableMap<K, V>();
