@@ -1,5 +1,6 @@
 package extracredit.chad;
 import net.datastructures.*;
+
 import java.util.Comparator;
 
 public class SortedListPriorityQueueTest {
@@ -71,6 +72,35 @@ public class SortedListPriorityQueueTest {
 		queue2.insert (new Auto ("Yamaha", "Bendo", 22500.0, 125), "Yamaha");
 		queue2.insert (new Auto ("Toyota", "Prius", 33000.0, 60), "Toyota");
 		queue2.insert (new Auto ("Isuzu", "Sneeze", 11000.0, 120), "Isuzu");
+		
+		TreeMap <Auto, String> queue3 = new TreeMap<Auto, String>(comp);
+		
+		queue3.put(new Auto ("Mercedes", "S-Class", 20000.0, 210), "Mercedes");
+		queue3.put(new Auto ("Kia", "Sonata", 100.0, 300), "Kia");
+		
+		System.out.printf("\n\nThe TREEMAP queue is queue3:\n");
+		
+		for(Entry<Auto, String> entry : queue3.entrySet()) {
+			Auto key = entry.getKey();
+			String value = entry.getValue();
+			System.out.println(key + " => " + value);
+		}
+		
+		System.out.printf("\nAdding entries to queue3\n");
+		queue3.put(new Auto ("Mercedes", "M-Class", 90.0, 100), "Mercedes");
+		queue3.put(new Auto ("Mercedes", "S-Class", 90000.0, 300), "Mercedes");
+		
+		System.out.printf("Adding identical entry to queue3\n");
+		queue3.put(new Auto ("Kia", "Sonata", 100.0, 300), "Kia");
+		
+		System.out.printf("\nPrinting resulting queue3:\n");
+		for(Entry<Auto, String> entry : queue3.entrySet()) {
+			Auto key = entry.getKey();
+			String value = entry.getValue();
+			System.out.println(key + " => " + value);
+		}
+				
+		
 		
 		// print queue info
 		System.out.printf ("\n\nThe queue is queue2:\n");
